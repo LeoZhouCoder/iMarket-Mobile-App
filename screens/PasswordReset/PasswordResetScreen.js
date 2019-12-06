@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PasswordResetScreen extends Component {
+export default class PasswordResetScreen extends Component {
   render() {
     return (
       <View style={styles.container}>

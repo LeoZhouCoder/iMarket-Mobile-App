@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class OptionsScreen extends Component {
+export default class OptionsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>

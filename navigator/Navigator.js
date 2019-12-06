@@ -1,15 +1,27 @@
-import { DetailScreen } from '../screens/DetailScreen';
-import { HomeScreen } from '../screens/HomeScreen';
-import { LoadingScreen } from '../screens/LoadingScreen';
-import { OptionsScreen } from '../screens/OptionsScreen';
-import { SettingsScreen } from '../screens/SettingsScreen';
+import DetailScreen from "../screens/Detail/DetailScreen";
+import HomeScreen from "../screens/Home/HomeScreen";
+import LoadingScreen from "../screens/Loading/LoadingScreen";
+import OptionsScreen from "../screens/Options/OptionsScreen";
+import SettingsScreen from "../screens/Settings/SettingsScreen";
 
-import { createStackNavigator } from 'react-navigation'; 
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const HomeStack = createStackNavigator({ DetailScreen, HomeScreen, OptionsScreen });
 
-const MainTabs = createBottomTabNavigator({ HomeStack, SettingsScreen });
+const HomeStack = createStackNavigator({
+  DetailScreen,
+  HomeScreen,
+  OptionsScreen
+});
 
-const RootSwitch = createSwitchNavigator({ LoadingScreen, MainTabs });
+/*const MainTabs = createBottomTabNavigator({
+  Home: HomeStack,
+  Settings: SettingsScreen
+});
 
-export default RootSwitch;
+const RootSwitch = createSwitchNavigator({ LoadingScreen, MainTabs });*/
+
+const AppContainer = createAppContainer(HomeStack);
+
+export default AppContainer;

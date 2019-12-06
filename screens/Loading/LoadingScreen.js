@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class LoadingScreen extends Component {
+export default class LoadingScreen extends Component {
   render() {
     return (
       <View style={styles.container}>

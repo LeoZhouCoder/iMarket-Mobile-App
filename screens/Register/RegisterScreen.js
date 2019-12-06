@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class RegisterScreen extends Component {
+export default class RegisterScreen extends Component {
   render() {
     return (
       <View style={styles.container}>

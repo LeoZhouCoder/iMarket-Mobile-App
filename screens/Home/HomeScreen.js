@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class HomeScreen extends Component {
+export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
