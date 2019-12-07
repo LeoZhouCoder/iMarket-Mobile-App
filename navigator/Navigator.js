@@ -11,6 +11,8 @@ import BrowseScreen from "../screens/BrowseScreen";
 import SpecialsScreen from "../screens/SpecialsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
+import { MaterialHeaderButtons, Item } from '../components/HeaderButtons'
+
 const BottomTabIcons = {
   Home: "ios-home",
   Browse: "ios-list",
@@ -26,10 +28,10 @@ const styles = StyleSheet.create({
 
 const DefaultNavigationOptions = {
   headerTintColor: "red",
-  headerRight: <View style={styles.container}>
-                  <Ionicons name="ios-search" size={25}/>
-                  <Ionicons name="ios-cart" size={25}/>
-                </View>
+  headerRight: <MaterialHeaderButtons>
+                  <Item title="search" iconName="ios-search" onPress={() => console.log('search')} />
+                  <Item title="cart" iconName="ios-cart" onPress={() => console.log('cart')} />
+                </MaterialHeaderButtons>
 };
 
 const AppNavigator = createBottomTabNavigator(
