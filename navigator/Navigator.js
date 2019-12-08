@@ -16,6 +16,8 @@ import SearchScreen from "../screens/SearchScreen";
 
 import { MaterialHeaderButtons, Item } from "./HeaderButtons";
 import { navigate } from "./NavigationService";
+import { translate } from "../utils/Localization";
+import I18n from "i18n-js";
 
 const BottomTabIcons = {
   Home: "ios-home",
@@ -71,7 +73,7 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: ({ navigation }) => ({
-        title: `Home`
+        title: translate("tabNames.home")
       })
     }
   },
