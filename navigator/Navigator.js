@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -11,7 +10,7 @@ import BrowseScreen from "../screens/BrowseScreen";
 import SpecialsScreen from "../screens/SpecialsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
-import { MaterialHeaderButtons, Item } from '../components/HeaderButtons'
+import { MaterialHeaderButtons, Item } from './HeaderButtons'
 
 const BottomTabIcons = {
   Home: "ios-home",
@@ -19,12 +18,6 @@ const BottomTabIcons = {
   Specials: "ios-pricetags",
   Settings: "ios-settings"
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row'
-  }
-});
 
 const DefaultNavigationOptions = {
   headerTintColor: "red",
@@ -34,6 +27,8 @@ const DefaultNavigationOptions = {
                 </MaterialHeaderButtons>
 };
 
+
+
 const AppNavigator = createBottomTabNavigator(
   {
     Home: {
@@ -42,7 +37,7 @@ const AppNavigator = createBottomTabNavigator(
           Home: {
             screen: HomeScreen,
             navigationOptions: ({ navigation }) => ({
-              title: `MyHome`
+              title: `Home`
             })
           }
         },
@@ -51,7 +46,7 @@ const AppNavigator = createBottomTabNavigator(
         }
       ),
       navigationOptions: ({ navigation }) => ({
-        title: `Home!`
+        title: `Home`
       })
     },
     Browse: {
