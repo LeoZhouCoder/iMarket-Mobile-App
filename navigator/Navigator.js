@@ -55,11 +55,14 @@ function getNavigationOptions(isHeader, title = null, headerRight = null) {
   let config = {};
   config.headerTintColor = TINT_COLOR;
   if (!isHeader) config.header = null;
+  console.log(title);
   if (title) {
-    let translatedTitle = translate(title);
-    config.title = translatedTitle;
-    config.headerTruncatedBackTitle = translatedTitle;
+    config.title = translate(title);
+    config.headerTruncatedBackTitle = translate(title);
+  }else{
+    config.headerTruncatedBackTitle = translate("default.backButton");
   }
+  
   if (headerRight) config.headerRight = headerRight;
   return config;
 }
@@ -81,36 +84,36 @@ function createTabStack(path, screen, title, buttonNames = null) {
 const HomeStack = createTabStack(
   "Home",
   HomeScreen,
-  "tabNames.home",
+  "screenNames.home",
   MainScreenButtons
 );
 
 const BrowseStack = createTabStack(
   "Browse",
   BrowseScreen,
-  "tabNames.browse",
+  "screenNames.browse",
   MainScreenButtons
 );
 
 const SpecialsStack = createTabStack(
   "Specials",
   SpecialsScreen,
-  "tabNames.specials",
+  "screenNames.specials",
   MainScreenButtons
 );
 
 const SettingsStack = createTabStack(
   "Settings",
   SettingsScreen,
-  "tabNames.settings"
+  "screenNames.settings"
 );
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Home: getRouteConfig(HomeStack, "tabNames.home"),
-    Browse: getRouteConfig(BrowseStack, "tabNames.browse"),
-    Specials: getRouteConfig(SpecialsStack, "tabNames.specials"),
-    Settings: getRouteConfig(SettingsStack, "tabNames.settings")
+    Home: getRouteConfig(HomeStack, "screenNames.home"),
+    Browse: getRouteConfig(BrowseStack, "screenNames.browse"),
+    Specials: getRouteConfig(SpecialsStack, "screenNames.specials"),
+    Settings: getRouteConfig(SettingsStack, "screenNames.settings")
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -135,7 +138,7 @@ const TabNavigator = createBottomTabNavigator(
 const AppNavigator = createStackNavigator({
   MainTab: {
     screen: TabNavigator,
-    navigationOptions: getNavigationOptions(false)
+    navigationOptions: ({ navigation }) => getNavigationOptions(false)
   },
   ItemList: getRouteConfig(ItemListScreen, null, DeepScreenButtons),
   ItemDetail: getRouteConfig(ItemDetailScreen, null, DeepScreenButtons),
