@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class OptionsScreen extends Component {
+export default class SearchScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is the OptionsScreen.</Text>
+        <Text>This is the SearchScreen.</Text>
       </View>
     );
   }

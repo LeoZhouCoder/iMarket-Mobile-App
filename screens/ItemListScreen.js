@@ -10,14 +10,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SpecialsScreen extends Component {
+export default class ItemListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is the SpecialsScreen.</Text>
+        <Text>This is the ItemListScreen.</Text>
         <Button
-          title="ItemList"
-          onPress={() => navigate("ItemList")}
+          title="ItemDetail"
+          onPress={() => navigate("ItemDetail")}
         />
       </View>
     );

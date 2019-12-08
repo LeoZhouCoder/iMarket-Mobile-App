@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class LoadingScreen extends Component {
+export default class ItemDetailScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is the LoadingScreen.</Text>
+        <Text>This is the ItemDetailScreen.</Text>
       </View>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { navigate } from "../navigator/NavigationService";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +15,10 @@ export default class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Text>This is the HomeScreen.</Text>
+        <Button
+          title="ItemList"
+          onPress={() => navigate("ItemList")}
+        />
       </View>
     );
   }
