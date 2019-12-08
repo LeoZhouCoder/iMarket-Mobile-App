@@ -2,8 +2,11 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
-
 import { Ionicons } from "@expo/vector-icons";
+
+import { MaterialHeaderButtons, Item } from "./HeaderButtons";
+import { navigate } from "./NavigationService";
+import { translate } from "../utils/Localization";
 
 import HomeScreen from "../screens/HomeScreen";
 import BrowseScreen from "../screens/BrowseScreen";
@@ -14,10 +17,30 @@ import ItemDetailScreen from "../screens/ItemDetailScreen";
 import CartScreen from "../screens/CartScreen";
 import SearchScreen from "../screens/SearchScreen";
 
-import { MaterialHeaderButtons, Item } from "./HeaderButtons";
-import { navigate } from "./NavigationService";
-import { translate } from "../utils/Localization";
-import I18n from "i18n-js";
+const HeaderButtons = {
+  search: { icon: "ios-search", action: () => navigate("Search") },
+  cart: { icon: "ios-cart", action: () => navigate("Cart") },
+  more: { icon: "md-more", action: () => console.log("more") }
+};
+
+const MainScreenButtons = ["search", "cart"];
+const DeepScreenButtons = ["search", "cart", "more"];
+
+function getHeaderButton(name, icon, action) {
+  return <Item title={name} key={name} iconName={icon} onPress={action} />;
+}
+
+function getHeader(buttonNames) {
+  if (!buttonNames) return null;
+  let items = [];
+  buttonNames.forEach(name => {
+    if (!HeaderButtons[name]) return;
+    let config = HeaderButtons[name];
+    items.push(getHeaderButton(name, config.icon, config.action));
+  });
+  if (!items.length) return null;
+  return <MaterialHeaderButtons>{items}</MaterialHeaderButtons>;
+}
 
 const BottomTabIcons = {
   Home: "ios-home",
@@ -26,132 +49,68 @@ const BottomTabIcons = {
   Settings: "ios-settings"
 };
 
-export const NavigationHeader = isMore => {
-  let items = [];
-  items.push(
-    <Item
-      title="search"
-      key="search"
-      iconName="ios-search"
-      onPress={() => navigate("Search")}
-    />
-  );
-  items.push(
-    <Item
-      title="cart"
-      key="cart"
-      iconName="ios-cart"
-      onPress={() => navigate("Cart")}
-    />
-  );
-  if (isMore) {
-    items.push(
-      <Item
-        title="more"
-        key="more"
-        iconName="md-more"
-        onPress={() => console.log("more")}
-      />
-    );
+const TINT_COLOR = "red";
+
+function getNavigationOptions(isHeader, title = null, headerRight = null) {
+  let config = {};
+  config.headerTintColor = TINT_COLOR;
+  if (!isHeader) config.header = null;
+  if (title) {
+    let translatedTitle = translate(title);
+    config.title = translatedTitle;
+    config.headerTruncatedBackTitle = translatedTitle;
   }
+  if (headerRight) config.headerRight = headerRight;
+  return config;
+}
 
-  return <MaterialHeaderButtons>{items}</MaterialHeaderButtons>;
-};
+function getRouteConfig(screen, title, buttonNames = null) {
+  return {
+    screen: screen,
+    navigationOptions: ({ navigation }) =>
+      getNavigationOptions(true, title, getHeader(buttonNames))
+  };
+}
 
-const DefaultNavigationOptions = {
-  headerTintColor: "red",
-  headerRight: NavigationHeader(false)
-};
+function createTabStack(path, screen, title, buttonNames = null) {
+  let config = {};
+  config[path] = getRouteConfig(screen, title, buttonNames);
+  return createStackNavigator(config);
+}
 
-const DefaultNavigationOptionsWithMoreButton = {
-  headerTintColor: "red",
-  headerRight: NavigationHeader(true)
-};
-
-const HomeStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: translate("tabNames.home")
-      })
-    }
-  },
-  {
-    defaultNavigationOptions: DefaultNavigationOptions
-  }
+const HomeStack = createTabStack(
+  "Home",
+  HomeScreen,
+  "tabNames.home",
+  MainScreenButtons
 );
 
-const BrowseStack = createStackNavigator(
-  {
-    Browse: {
-      screen: BrowseScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: `Browse`
-      })
-    }
-  },
-  {
-    defaultNavigationOptions: DefaultNavigationOptions
-  }
+const BrowseStack = createTabStack(
+  "Browse",
+  BrowseScreen,
+  "tabNames.browse",
+  MainScreenButtons
 );
 
-const SpecialsStack = createStackNavigator(
-  {
-    Specials: {
-      screen: SpecialsScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: `Specials`
-      })
-    }
-  },
-  {
-    defaultNavigationOptions: DefaultNavigationOptions
-  }
+const SpecialsStack = createTabStack(
+  "Specials",
+  SpecialsScreen,
+  "tabNames.specials",
+  MainScreenButtons
 );
 
-const SettingsStack = createStackNavigator(
-  {
-    Settings: {
-      screen: SettingsScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: `Settings`
-      })
-    }
-  },
-  {
-    defaultNavigationOptions: {
-      headerTintColor: "red"
-    }
-  }
+const SettingsStack = createTabStack(
+  "Settings",
+  SettingsScreen,
+  "tabNames.settings"
 );
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Home: {
-      screen: HomeStack,
-      navigationOptions: ({ navigation }) => ({
-        title: `Home`
-      })
-    },
-    Browse: {
-      screen: BrowseStack,
-      navigationOptions: ({ navigation }) => ({
-        title: `Browse`
-      })
-    },
-    Specials: {
-      screen: SpecialsStack,
-      navigationOptions: ({ navigation }) => ({
-        title: `Specials`
-      })
-    },
-    Settings: {
-      screen: SettingsStack,
-      navigationOptions: ({ navigation }) => ({
-        title: `Specials`
-      })
-    }
+    Home: getRouteConfig(HomeStack, "tabNames.home"),
+    Browse: getRouteConfig(BrowseStack, "tabNames.browse"),
+    Specials: getRouteConfig(SpecialsStack, "tabNames.specials"),
+    Settings: getRouteConfig(SettingsStack, "tabNames.settings")
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -176,26 +135,12 @@ const TabNavigator = createBottomTabNavigator(
 const AppNavigator = createStackNavigator({
   MainTab: {
     screen: TabNavigator,
-    navigationOptions: {
-      header: null
-    }
+    navigationOptions: getNavigationOptions(false)
   },
-  ItemList: {
-    screen: ItemListScreen,
-    navigationOptions: DefaultNavigationOptionsWithMoreButton
-  },
-  ItemDetail: {
-    screen: ItemDetailScreen,
-    navigationOptions: DefaultNavigationOptionsWithMoreButton
-  },
-  Cart: {
-    screen: CartScreen,
-    navigationOptions: DefaultNavigationOptionsWithMoreButton
-  },
-  Search: {
-    screen: SearchScreen,
-    navigationOptions: DefaultNavigationOptionsWithMoreButton
-  },
+  ItemList: getRouteConfig(ItemListScreen, null, DeepScreenButtons),
+  ItemDetail: getRouteConfig(ItemDetailScreen, null, DeepScreenButtons),
+  Cart: getRouteConfig(CartScreen, null, DeepScreenButtons),
+  Search: getRouteConfig(SearchScreen, null, DeepScreenButtons)
 });
 
 const AppContainer = createAppContainer(AppNavigator);
