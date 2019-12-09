@@ -20,16 +20,16 @@ const styles = StyleSheet.create({
   largeItem: {
     justifyContent: "center",
     alignItems: "center",
-    aspectRatio: 1.2
+    aspectRatio: 1.2    // 120*100
   },
   normalItem: {
     justifyContent: "center",
     alignItems: "center",
-    aspectRatio: 1.62
+    aspectRatio: 1.6    // 160*100
   },
   smallItem: {
     justifyContent: "center",
     alignItems: "center",
-    aspectRatio: 0.9
+    aspectRatio: 0.9    // 90*100
   }
 });
