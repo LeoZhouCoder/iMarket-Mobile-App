@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import { StyleSheet, View, SectionList, FlatList, Image } from "react-native";
 
-import { getHomeCategories } from "../actions/fetchData";
 import { navigate } from "../navigator/NavigationService";
 
 const Columns = {
@@ -10,13 +9,10 @@ const Columns = {
   normal: 1,
   small: 2
 };
-
-export default class HomeScreen extends Component {
+export default class SectionFlatList extends Component {
   constructor() {
     super();
-    let homeCategories = getHomeCategories();
-    console.log(homeCategories);
-    /*var data = [];
+    var data = [];
 
     data.push({
       title: "Normal",
@@ -45,9 +41,9 @@ export default class HomeScreen extends Component {
       data: Array.apply(null, Array(8)).map((v, i) => {
         return { id: i, src: "http://placehold.it/180x200?text=" + (i + 1) };
       })
-    });*/
+    });
     this.state = {
-      dataSource: homeCategories
+      dataSource: data
     };
   }
 

@@ -55,7 +55,6 @@ function getNavigationOptions(isHeader, title = null, headerRight = null) {
   let config = {};
   config.headerTintColor = TINT_COLOR;
   if (!isHeader) config.header = null;
-  console.log(title);
   if (title) {
     config.title = translate(title);
     config.headerTruncatedBackTitle = translate(title);

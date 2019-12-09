@@ -1,0 +1,49 @@
+[
+    {
+        "size": "normal",
+        "data": [
+            {
+                "list": "christmas",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw8c14bced/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-jewellery-513x350.png"
+            }
+        ]
+    },
+    {
+        "size": "small",
+        "data": [
+            {
+                "list": "christmasForHer",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw43a9eb3a/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-for-her-600x674.png"
+            },
+            {
+                "list": "christmasForHim",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw9549ae8a/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-for-him-600x674.png"
+            },
+            {
+                "list": "christmasForKids",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw467522b6/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/gifts-for-kids.png"
+            },
+            {
+                "list": "giftSets",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dwb62d73eb/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-giftsets-600x674.png"
+            },
+            {
+                "list": "christmasTrees",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw2cc23200/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-christmas-trees-600x674.png"
+            },
+            {
+                "list": "christmasDining",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dw0e440f38/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-christmas-dining-602x339.png"
+            }
+        ]
+    },
+    {
+        "size": "large",
+        "data": [
+            {
+                "list": "homeAndGarden",
+                "src": "https://www.thewarehouse.co.nz/on/demandware.static/-/Library-Sites-twl-shared-library/default/dwda01e37c/images/Weekly-Site-Banners/fy20/week-19-2019/homepage/w1786-wk19-week-19-homepage-outdoor-living-600x674.png"
+            }
+        ]
+    }
+]
