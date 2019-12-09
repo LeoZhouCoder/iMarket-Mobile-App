@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
   smallItem: {
     justifyContent: "center",
     alignItems: "center",
-    aspectRatio: 0.9 // 90*100
+    aspectRatio: 0.8 // 90*100
   }
 });

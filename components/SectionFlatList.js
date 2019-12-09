@@ -65,6 +65,3 @@ SectionFlatList.propTypes = {
     })
   ).isRequired
 };
-/**
- *
- */
