@@ -7,8 +7,8 @@ export const getHomeCategories = () => {
 export const getListData = listName => {
   switch (listName) {
     case "christmas":
-      return require("../mockData/en/homeCategories.json");
+      return require("../mockData/en/christmas.json");
     default:
-      return require("../mockData/en/homeCategories.json");
+      return require("../mockData/en/christmas.json");
   }
 };
