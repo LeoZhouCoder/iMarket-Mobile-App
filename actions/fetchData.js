@@ -1,4 +1,14 @@
+import { locale } from "../utils/Localization";
+
 export const getHomeCategories = () => {
-  const homeCategories = require("../mockData/homeCategories.json");
-  return homeCategories;
+  return require("../mockData/en/homeCategories.json");
+};
+
+export const getListData = listName => {
+  switch (listName) {
+    case "christmas":
+      return require("../mockData/en/homeCategories.json");
+    default:
+      return require("../mockData/en/homeCategories.json");
+  }
 };

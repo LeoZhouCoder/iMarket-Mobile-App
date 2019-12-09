@@ -14,6 +14,8 @@ export function localize() {
   I18n.locale = Localization.locale;
 }
 
+export const locale = I18n.locale;
+
 export function translate(scope, options = null) {
   return I18n.t(scope, options);
 }
