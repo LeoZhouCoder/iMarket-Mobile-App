@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, SectionList, FlatList } from "react-native";
+import { View, SectionList, FlatList } from "react-native";
 import PropTypes from "prop-types";
 
 const FlatListColumns = {
@@ -35,7 +35,14 @@ export default class SectionFlatList extends Component {
 
   render() {
     return (
-      <View style={styles.sectionList}>
+      <View
+        style={{
+          justifyContent: "center",
+          paddingTop: this.props.sectionPadding,
+          paddingLeft: this.props.sectionPadding,
+          paddingRight: this.props.sectionPadding
+        }}
+      >
         <SectionList
           sections={this.props.data}
           keyExtractor={(item, index) => item + index}
@@ -46,17 +53,9 @@ export default class SectionFlatList extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  sectionList: {
-    justifyContent: "center",
-    paddingTop: 5,
-    paddingLeft: 5,
-    paddingRight: 5
-  }
-});
-
 SectionFlatList.propTypes = {
   sectionSpace: PropTypes.number.isRequired,
+  sectionPadding: PropTypes.number.isRequired,
   ItemComponent: PropTypes.elementType.isRequired,
   handleClickItem: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(

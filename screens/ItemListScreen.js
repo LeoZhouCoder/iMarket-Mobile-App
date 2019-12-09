@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { navigate } from "../navigator/NavigationService";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
-});
+import SectionFlatList from "../components/SectionFlatList";
+import ItemDetailCard from "../components/ItemDetailCard";
+
+import { navigate } from "../navigator/NavigationService";
+import { getListData } from "../actions/fetchData";
 
 export default class ItemListScreen extends Component {
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <Text>This is the ItemListScreen.</Text>
-        <Button
-          title="ItemDetail"
-          onPress={() => navigate("ItemDetail")}
-        />
-      </View>
+      <SectionFlatList
+        data={getListData(navigation.getParam('list'))}
+        ItemComponent={ItemDetailCard}
+        sectionSpace={0}
+        sectionPadding={0}
+        handleClickItem={item => navigate("ItemDetail", item)}
+      />
     );
   }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
-import { getHomeCategories } from "../actions/fetchData";
 import SectionFlatList from "../components/SectionFlatList";
 import HomeCategory from "../components/HomeCategory";
+
+import { getHomeCategories } from "../actions/fetchData";
 import { navigate } from "../navigator/NavigationService";
 
 export default class HomeScreen extends Component {
@@ -12,6 +13,7 @@ export default class HomeScreen extends Component {
         data={getHomeCategories()}
         ItemComponent={HomeCategory}
         sectionSpace={5}
+        sectionPadding={5}
         handleClickItem={item => navigate("ItemList", item)}
       />
     );
