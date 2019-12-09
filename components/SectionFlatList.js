@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, SectionList, FlatList } from "react-native";
+import PropTypes from "prop-types";
 
 const FlatListColumns = {
   large: 1,
@@ -53,3 +54,18 @@ const styles = StyleSheet.create({
     paddingRight: 5
   }
 });
+
+SectionFlatList.propTypes = {
+  sectionSpace: PropTypes.number.isRequired,
+  ItemComponent: PropTypes.elementType.isRequired,
+  handleClickItem: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      size: PropTypes.string.isRequired,
+      data: PropTypes.arrayOf(PropTypes.object).isRequired
+    })
+  ).isRequired
+};
+/**
+ *
+ */
