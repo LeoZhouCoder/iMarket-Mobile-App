@@ -1,10 +1,12 @@
 import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { TouchableOpacity, StyleSheet, View, Image } from "react-native";
 
-export default HomeCategory = ({ item, size }) => {
+export default HomeCategory = ({ item, size, handleClickItem }) => {
   return (
     <View style={styles.container}>
-      <Image style={styles[size + "Item"]} source={{ uri: item.src }} />
+      <TouchableOpacity onPress={() => handleClickItem(item)}>
+        <Image style={styles[size + "Item"]} source={{ uri: item.src }} />
+      </TouchableOpacity>
     </View>
   );
 };

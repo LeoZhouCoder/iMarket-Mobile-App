@@ -7,23 +7,25 @@ const FlatListColumns = {
   small: 2
 };
 export default class SectionFlatList extends Component {
-  getFlatListStyle = () => {
-    return {
-      justifyContent: "center",
-      paddingTop: this.props.sectionSpace
-    };
-  };
-
   renderFlatList = ({ section, index }) => {
     if (index !== 0) return null;
     return (
       <FlatList
-        style={this.getFlatListStyle()}
+        style={{
+          justifyContent: "center",
+          paddingTop: this.props.sectionSpace
+        }}
         numColumns={FlatListColumns[section.size]}
         data={section.data}
         renderItem={({ item }) => {
           let ItemComponent = this.props.ItemComponent;
-          return <ItemComponent item={item} size={section.size} />;
+          return (
+            <ItemComponent
+              item={item}
+              size={section.size}
+              handleClickItem={this.props.handleClickItem}
+            />
+          );
         }}
         keyExtractor={(item, index) => index.toString()}
       />
