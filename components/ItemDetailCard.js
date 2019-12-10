@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  Text,
-  Button,
-  StyleSheet
-} from "react-native";
+import { View, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
+
+import { Button } from "react-native-elements";
 
 export default ItemDetailCard = ({ item, size, handleClickItem }) => {
   return (
@@ -16,8 +11,9 @@ export default ItemDetailCard = ({ item, size, handleClickItem }) => {
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.price}>${item.price}</Text>
         <Button
-          style={styles.fixToText}
+          style={styles.button}
           title="Add to trolley"
+          buttonStyle={{ backgroundColor: "red" }}
           onPress={() => console.log(item.id)}
         />
       </TouchableOpacity>
@@ -34,7 +30,7 @@ const styles = StyleSheet.create({
     margin: 0,
     borderWidth: 0.2,
     borderColor: "#888888",
-    aspectRatio: 0.8
+    aspectRatio: 0.6
     //backgroundColor: "red"
   },
   largeItem: {
@@ -63,22 +59,21 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     alignSelf: "center",
-    textAlign: "center"
+    //textAlign: "center"
     //backgroundColor: 'skyblue'
   },
   price: {
-    flex: 1.5,
-    marginBottom: 35,
+    marginBottom: 10,
     marginLeft: 10,
     marginRight: 10,
     alignSelf: "center",
     fontWeight: "bold",
     fontSize: 18
-    //backgroundColor: 'steelblue'
+    //backgroundColor: "steelblue"
   },
-  fixToText: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: 'steelblue'
+  button: {
+    marginBottom: 10,
+    alignSelf: "center",
+    width:"90%"
   }
 });
