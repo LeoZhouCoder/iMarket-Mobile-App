@@ -13,8 +13,7 @@ export default class SectionFlatList extends Component {
     return (
       <FlatList
         style={{
-          justifyContent: "center",
-          paddingTop: this.props.sectionSpace
+          paddingBottom: this.props.sectionSpace
         }}
         numColumns={FlatListColumns[section.size]}
         data={section.data}
@@ -37,7 +36,6 @@ export default class SectionFlatList extends Component {
     return (
       <View
         style={{
-          justifyContent: "center",
           paddingTop: this.props.sectionPadding,
           paddingLeft: this.props.sectionPadding,
           paddingRight: this.props.sectionPadding
