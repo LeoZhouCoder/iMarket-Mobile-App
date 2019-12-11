@@ -6,12 +6,12 @@ export default class Price extends Component {
   render() {
     let { presentPrice, previousPrice, volumeUnit, style } = this.props;
     let dollars = Math.floor(presentPrice);
-    let cents = (presentPrice - dollars) * 100;
+    let cents = Math.floor((presentPrice - dollars) * 100);
     let color = "black";
     let previousPriceNode = null;
     if (previousPrice) {
       color = "red";
-      let save = previousPrice - presentPrice;
+      let save = (previousPrice - presentPrice).toFixed(2);
       previousPriceNode = (
         <Text
           style={{
@@ -23,7 +23,7 @@ export default class Price extends Component {
           }}
         >
           <Text style={{ color: "gray" }}>
-            {"was "} ${previousPrice}
+            {"was "} ${previousPrice.toFixed(2)}
           </Text>
           {"\n"}save ${save}
         </Text>

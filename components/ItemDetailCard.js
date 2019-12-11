@@ -24,7 +24,7 @@ export default class ItemDetailCard extends Component {
         />
         <Ionicons
           style={styles.like}
-          name="ios-heart"
+          name="ios-heart-empty"
           size={30}
           color="gray"
           onPress={() => handleClickItem(item, ACTION_WISH)}
