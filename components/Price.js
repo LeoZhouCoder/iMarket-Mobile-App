@@ -6,51 +6,68 @@ export default class Price extends Component {
     let { presentPrice, previousPrice, volume, style } = this.props;
     let dollars = Math.floor(presentPrice);
     let cents = (presentPrice - dollars) * 100;
-    let save = previousPrice - presentPrice;
+    let color = "black";
+    let previousPriceNode = null;
+    if (previousPrice) {
+      color = "red";
+      let save = previousPrice - presentPrice;
+      previousPriceNode = (
+        <Text
+          style={{
+            flex: 1,
+            color: color,
+            textAlign: "center",
+            fontSize: 16,
+            lineHeight: 20
+          }}
+        >
+          was ${previousPrice}
+          {"\n"}save ${save}
+        </Text>
+      );
+    }
+
     return (
       <View
         style={{
           ...style,
           flexDirection: "row",
+          alignItems: "flex-start"
         }}
       >
-        <View style={{ flex: 3, flexDirection: "row",alignItems: 'flex-start' }}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 20,
-              lineHeight: 24,
-            }}
-          >
-            $
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 38,
-              lineHeight: 40,
-              backgroundColor: "powderblue"
-            }}
-          >
-            {dollars}
-          </Text>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 16,
-              lineHeight: 20,
-              backgroundColor: "skyblue"
-            }}
-          >
-            {cents?cents:"00"}
-            {"\n"}
-            {volume}
-          </Text>
-        </View>
-        <View style={{ flex: 3, backgroundColor: "gray" }}>
-          <Text>was ${previousPrice}</Text>
-          <Text>save ${save}</Text>
-        </View>
+        <Text
+          style={{
+            color: color,
+            fontWeight: "bold",
+            fontSize: 20,
+            lineHeight: 24
+          }}
+        >
+          $
+        </Text>
+        <Text
+          style={{
+            color: color,
+            fontWeight: "bold",
+            fontSize: 38,
+            lineHeight: 40
+          }}
+        >
+          {dollars}
+        </Text>
+        <Text
+          style={{
+            color: color,
+            fontWeight: "bold",
+            fontSize: 16,
+            lineHeight: 20
+          }}
+        >
+          {cents ? cents : "00"}
+          {"\n"}
+          {volume ? volume : ""}
+        </Text>
+        {previousPriceNode}
       </View>
     );
   }
