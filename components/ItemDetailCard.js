@@ -1,36 +1,51 @@
-import React from "react";
+import React, { Component } from "react";
 import { TouchableOpacity, Image, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
+import { Ionicons } from "@expo/vector-icons";
 
 import Price from "./Price";
 
-export default ItemDetailCard = ({ item, size, handleClickItem }) => {
-  return (
-    <TouchableOpacity style={styles.card} onPress={() => handleClickItem(item)}>
-      <Image style={styles.image} source={{ uri: item.image }} />
-      <Text style={styles.title}>{item.title}</Text>
-      <Price
-        style={styles.price}
-        presentPrice={10}
-        previousPrice={14}
-        volume={"kg"}
-      />
-      <Button
-        style={styles.button}
-        title="Add to trolley"
-        buttonStyle={{ backgroundColor: "red" }}
-        onPress={() => console.log(item.id)}
-      />
-    </TouchableOpacity>
-  );
-};
+export default class ItemDetailCard extends Component {
+  render() {
+    let { item, handleClickItem } = this.props;
+    return (
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => handleClickItem(item)}
+      >
+        <Image style={styles.image} source={{ uri: item.image }} />
+        <Image
+          style={styles.badge}
+          source={require("../assets/image/special.png")}
+        />
+        <Ionicons style={styles.like} name="ios-heart" size={30} color="gray" />
+        <Text style={styles.title}>
+          {item.title}
+          {"\n"}
+          {item.volume}
+        </Text>
+        <Price
+          style={styles.price}
+          presentPrice={item.price}
+          previousPrice={item.previousPrice}
+          volumeUnit={item.volumeUnit}
+        />
+        <Button
+          title="Add to trolley"
+          buttonStyle={{ backgroundColor: "red" }}
+          onPress={() => console.log(item.id)}
+        />
+      </TouchableOpacity>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   card: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: 'stretch',
+    alignItems: "stretch",
     padding: 10,
     borderWidth: 0.2,
     borderColor: "#888888",
@@ -41,28 +56,25 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "100%",
     aspectRatio: 0.8,
-    marginBottom: 10,
-
-    borderWidth: 1,
-    borderColor: "#000000"
-    //backgroundColor: "powderblue"
+    marginBottom: 10
+  },
+  badge: {
+    position: "absolute",
+    width: 40,
+    height: 40,
+    top: 10,
+    left: 10
+  },
+  like: {
+    position: "absolute",
+    top: 10,
+    right: 10
   },
   title: {
     flex: 3,
-    marginBottom: 10,
-
-    borderWidth: 1,
-    borderColor: "#000000"
-    //textAlign: "center"
-    //backgroundColor: 'skyblue'
+    marginBottom: 10
   },
   price: {
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "#000000"
-    //backgroundColor: "steelblue"
-  },
-  button: {
-    //marginTop: 10
+    marginBottom: 10
   }
 });

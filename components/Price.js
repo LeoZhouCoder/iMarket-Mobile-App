@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
+import PropTypes from "prop-types";
 
 export default class Price extends Component {
   render() {
-    let { presentPrice, previousPrice, volume, style } = this.props;
+    let { presentPrice, previousPrice, volumeUnit, style } = this.props;
     let dollars = Math.floor(presentPrice);
     let cents = (presentPrice - dollars) * 100;
     let color = "black";
@@ -65,10 +66,16 @@ export default class Price extends Component {
         >
           {cents ? cents : "00"}
           {"\n"}
-          {volume ? volume : ""}
+          {volumeUnit ? volumeUnit : ""}
         </Text>
         {previousPriceNode}
       </View>
     );
   }
 }
+
+Price.propTypes = {
+  presentPrice: PropTypes.number.isRequired,
+  previousPrice: PropTypes.number,
+  volume: PropTypes.string
+};
