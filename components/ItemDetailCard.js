@@ -5,20 +5,30 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Price from "./Price";
 
+export const ACTION_DETAIL = "detail";
+export const ACTION_WISH = "wish";
+export const ACTION_CART = "cart";
+
 export default class ItemDetailCard extends Component {
   render() {
     let { item, handleClickItem } = this.props;
     return (
       <TouchableOpacity
         style={styles.card}
-        onPress={() => handleClickItem(item)}
+        onPress={() => handleClickItem(item, ACTION_DETAIL)}
       >
         <Image style={styles.image} source={{ uri: item.image }} />
         <Image
           style={styles.badge}
           source={require("../assets/image/special.png")}
         />
-        <Ionicons style={styles.like} name="ios-heart" size={30} color="gray" />
+        <Ionicons
+          style={styles.like}
+          name="ios-heart"
+          size={30}
+          color="gray"
+          onPress={() => handleClickItem(item, ACTION_WISH)}
+        />
         <Text style={styles.title}>
           {item.title}
           {"\n"}
@@ -31,9 +41,9 @@ export default class ItemDetailCard extends Component {
           volumeUnit={item.volumeUnit}
         />
         <Button
-          title="Add to trolley"
+          title="ADD TO TROLLEY"
           buttonStyle={{ backgroundColor: "red" }}
-          onPress={() => console.log(item.id)}
+          onPress={() => handleClickItem(item, ACTION_CART)}
         />
       </TouchableOpacity>
     );

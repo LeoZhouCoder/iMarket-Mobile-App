@@ -17,12 +17,14 @@ export default class Price extends Component {
           style={{
             flex: 1,
             color: color,
-            textAlign: "center",
+            marginLeft: 10,
             fontSize: 16,
             lineHeight: 20
           }}
         >
-          was ${previousPrice}
+          <Text style={{ color: "gray" }}>
+            {"was "} ${previousPrice}
+          </Text>
           {"\n"}save ${save}
         </Text>
       );
