@@ -17,34 +17,32 @@ export default class Price extends Component {
         <View style={{ flex: 3, flexDirection: "row",alignItems: 'flex-start' }}>
           <Text
             style={{
-              textAlignVertical: "top",
               fontWeight: "bold",
               fontSize: 20,
-              lineHeight: 30,
-              backgroundColor: "steelblue"
+              lineHeight: 24,
             }}
           >
             $
           </Text>
           <Text
             style={{
-              textAlignVertical: "top",
               fontWeight: "bold",
-              fontSize: 36,
-              backgroundColor: "skyblue"
+              fontSize: 38,
+              lineHeight: 40,
+              backgroundColor: "powderblue"
             }}
           >
             {dollars}
           </Text>
           <Text
             style={{
-              textAlignVertical: "top",
               fontWeight: "bold",
-              fontSize: 20,
-              backgroundColor: "powderblue"
+              fontSize: 16,
+              lineHeight: 20,
+              backgroundColor: "skyblue"
             }}
           >
-            {cents}
+            {cents?cents:"00"}
             {"\n"}
             {volume}
           </Text>
